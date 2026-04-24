@@ -1,0 +1,104 @@
+/* App.module.css */
+
+/* ── Desktop shell — centres phone on screen ─────────────── */
+.shell {
+  width: 100vw;
+  height: 100dvh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--app-bg); /* matches app background, no dark gap */
+}
+
+/* ── Phone frame ─────────────────────────────────────────── */
+/* RENAMED from .phone to .frame to avoid clash with FatimaGPT's .phone */
+.frame {
+  width: 100%;
+  max-width: 100%;  /* fills full screen width on mobile */
+  height: 100dvh;
+  max-height: 100dvh; /* no height cap either */
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  background: var(--bg-chat);
+  position: relative;
+
+  box-shadow: none; /* no shadow needed when full width */
+}
+
+@media (min-width: 420px) {
+  .frame {
+    border-radius: 44px;
+  }
+}
+
+/* ── FatimaGPT inner layout ──────────────────────────────── */
+.phone {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  /* ISSUE 1 FIX: overflow must NOT be hidden here — it clips the input bar
+     when the keyboard opens on mobile and the viewport shrinks.
+     The frame above handles clipping; this layer just needs to flex. */
+  overflow: visible;
+  background: var(--bg-chat);
+  /* Ensure the column fills full available height, not beyond */
+  min-height: 0;
+}
+
+/* ── BACKGROUND FIX ──────────────────────────────────────── */
+/*
+  WHY: background-attachment: fixed is completely broken on iOS Safari —
+  the image either disappears or jumps when the keyboard opens.
+
+  FIX: A position:absolute layer fills the phone frame and holds the
+  wallpaper. The chat area scrolls on top of it — background stays still.
+  No background-attachment needed at all.
+*/
+.bgLayer {
+  position: absolute;
+  inset: 0;                      /* top/right/bottom/left: 0 */
+  z-index: 0;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  pointer-events: none;
+}
+
+/* ISSUE 4 FIX: Removed dark-mode dimming entirely.
+   Background image stays identical in light and dark mode.
+   Only bubbles, text, and UI elements change with the theme. */
+
+/* ── Chat scroll area ────────────────────────────────────── */
+.chatArea {
+  position: relative;            /* sits above bgLayer (z-index: 0) */
+  z-index: 1;
+  flex: 1;
+  /* ISSUE 1 FIX: min-height: 0 is critical — without it, flex children
+     won't shrink below their content size, so the input bar gets pushed
+     off-screen when the keyboard opens and viewport height shrinks. */
+  min-height: 0;
+  overflow-y: auto;
+  overflow-x: hidden;
+  -webkit-overflow-scrolling: touch;
+  display: flex;
+  flex-direction: column;
+  padding: 6px 0 8px;
+  scroll-behavior: smooth;
+  /* No background here — bgLayer shows through */
+}
+
+/* Thin scrollbar */
+.chatArea::-webkit-scrollbar { width: 3px; }
+.chatArea::-webkit-scrollbar-thumb {
+  background: rgba(128,128,128,0.25);
+  border-radius: 3px;
+}
+
+/* ── Full-screen on actual phones ────────────────────────── */
+@media (max-width: 419px) {
+  .shell  { background: var(--bg-chat); }
+  .frame  { max-height: none; border-radius: 0; box-shadow: none; }
+}
