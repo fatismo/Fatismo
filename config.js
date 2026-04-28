@@ -13,7 +13,23 @@ export const GEMINI_MODEL = "gemini-2.5-flash-lite";
 // Drop  bot.png  and  bg.jpg  into the  public/assets/  folder
 // then these paths will work automatically.
 export const BOT_AVATAR = "/assets/bot.png";
-export const BG_IMAGE   = "/assets/bg.jpg";
+
+// ── 🖼️  BACKGROUND SLIDESHOW IMAGES ──────────────────────────
+// Add or remove image paths here to control the slideshow.
+// Images must be placed in public/assets/
+export const BG_IMAGES = [
+  "/assets/bg1.jpg",
+  "/assets/bg2.jpg.jpeg",
+  "/assets/bg3.jpg.jpeg",
+  "/assets/bg4.jpg.jpeg",
+  "/assets/bg5.jpg.jpeg",
+  "/assets/bg6.jpg.jpeg",
+  "/assets/bg7.jpg.jpeg",
+  "/assets/bg8.jpg.jpeg",
+  "/assets/bg9.jpg.jpeg",
+  "/assets/bg10.jpg.jpeg",
+];
+
 
 // ── 👤  CONTACT INFO ──────────────────────────────────────────
 export const CONTACT_NAME   = "Enait's Fatima";

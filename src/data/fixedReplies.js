@@ -55,10 +55,11 @@ export const fixedReplies = [
   },
   {
   triggers: [
-    "sex", "sax", "sexy", "kiss me", "nudes", "nude", "send pic", "send pics",
-    "horny", "hot", "turn me on", "sleep together",
-    "make out", "touch you", "boobs", "ass",
-    "come over", "dirty talk", "s*x", "s3x"
+    "sex", "sexy", "kiss me", "nudes", "nude", "send pic", "send pics",
+    "horny", "hot", "turn me on", "bed", "sleep together",
+    "make out", "touch you", "body", "boobs", "ass",
+    "come over", "private", "alone with you",
+    "dirty talk", "s*x", "s3x"
   ],
   responses: [
     "Phir wahi sac sux wali baatein",
@@ -164,7 +165,15 @@ export const fixedReplies = [
     "bolne se kya hota h?"
   ]
 },
-  {
+{
+  triggers: ["good night", "gn"],
+  responses: [
+    "hm",
+    "thk h soja",
+    "good night… zyada soch mt"
+  ]
+},
+{
   triggers: ["talk to me", "baat karo"],
   responses: [
     "ab yaad aayi?",
