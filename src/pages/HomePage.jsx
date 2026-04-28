@@ -42,7 +42,7 @@ const Icons = {
 const CARDS = [
   {
     id:       'fatimagram',
-    title:    'Fatimagram',
+    title:    'Fatimagram 📸',
     subtitle: 'Fatima from the lens of Enait.',
     image:    '/images/fatimagram.jpg',
     imagePos: 'left',
